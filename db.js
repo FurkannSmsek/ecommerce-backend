@@ -1,28 +1,30 @@
-const sql = require('mssql');
+const sql = require("mssql");
+
 console.log("DB.JS YÜKLENDİ");
+
 const config = {
-    user: 'sa',
-    password: '12345',
-    server: 'localhost',
-    port: 1453,
-    database: 'E-ticaret',
+    user: "saadmin",
+    password: "FurkanSql2026!Azure",
+    server: "furkan-ecommerce-sql-2026.database.windows.net",
+    port: 1433,
+    database: "E-ticaret-live_2",
     options: {
-        encrypt: false,
-        trustServerCertificate: true
+        encrypt: true,
+        trustServerCertificate: false
     }
 };
 
 const poolPromise = new sql.ConnectionPool(config)
     .connect()
     .then(pool => {
-        console.log('✅ SQL Server bağlantısı başarılı');
+        console.log("✅ Azure SQL bağlantısı başarılı");
         return pool;
     })
     .catch(err => {
-    console.error("❌ Veritabanına bağlanılamadı:");
-    console.error(err);
-    throw err;
-});
+        console.error("❌ Azure SQL bağlantı hatası:");
+        console.error(err);
+        throw err;
+    });
 
 module.exports = {
     sql,
